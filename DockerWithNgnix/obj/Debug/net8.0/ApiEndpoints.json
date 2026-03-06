@@ -1,0 +1,28 @@
+[
+  {
+    "ContainingType": "DockerWithNgnix.Controllers.ProductController",
+    "Method": "CreateProduct",
+    "RelativePath": "api/Product/CreateProduct",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productDto",
+        "Type": "DockerWithNgnix.DTO.ProductDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DockerWithNgnix.Controllers.ProductController",
+    "Method": "ProductList",
+    "RelativePath": "api/Product/ProductList",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]
