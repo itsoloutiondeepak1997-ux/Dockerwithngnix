@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
-
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
 // Add services to the container.
 
 builder.Services.AddControllers();
