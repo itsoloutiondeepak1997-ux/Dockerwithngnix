@@ -56,5 +56,31 @@ namespace DockerWithNgnix.Controllers
             return Ok(new { statuscode = 200, message = "Product added successfully" });
         }
 
+
+        [HttpPost("UpdateProduct")]
+        public async Task<IActionResult> UpdateProduct([FromBody] ProductDto productDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var product = new Product()
+            {
+                Id = Guid.NewGuid().ToString(),
+                Name = productDto.Name,
+                Description = productDto.Description,
+                Price = productDto.Price,
+                Category = productDto.Category
+            };
+
+            _context.Products.Add(product);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { statuscode = 200, message = "Product Update successfully" });
+        }
+
+
+
     }
 }
