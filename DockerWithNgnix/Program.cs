@@ -3,12 +3,12 @@ using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
-var port = Environment.GetEnvironmentVariable("PORT");
+//var port = Environment.GetEnvironmentVariable("PORT");
 
-builder.WebHost.ConfigureKestrel(options =>
-{
-    options.ListenAnyIP(int.Parse(port));
-});
+//builder.WebHost.ConfigureKestrel(options =>
+//{
+//    options.ListenAnyIP(int.Parse(port));
+//});
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -24,7 +24,7 @@ builder.Services.AddSwaggerGen(c =>
 
 
 var constr = builder.Configuration.GetConnectionString("DefaultConnection");
-//builder.Services.AddDbContext<ApplicationDbContext>(c => c.UseSqlServer(constr));
+builder.Services.AddDbContext<ApplicationDbContext>(c => c.UseSqlServer(constr));
 
 builder.Services.AddCors(options =>
 {
@@ -39,16 +39,16 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
-//{
+if (app.Environment.IsDevelopment())
+{
     app.UseSwagger();
     app.UseSwaggerUI();
-//}
+}
 
 //app.UseHttpsRedirection();
-
+app.UseCors("AllowAll");
 app.UseAuthorization();
 
 app.MapControllers();
-app.UseCors("AllowAll");
+
 app.Run();
